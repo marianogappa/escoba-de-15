@@ -5,7 +5,7 @@ export const audioPaths = {
     "error": ["error.mp3"],
     "finish": ["finish 1.mp3", "finish 2.mp3"],
     "intro": ["intro.mp3"],
-    "press": ["press.m4a"],
+    "press": ["press.mp3"],
     "reveal_card": ["reveal card 1.mp3", "reveal card 2.mp3"],
     "sfx": ["sfx.mp3"],
     "unknown": ["unknown.mp3"],
@@ -18,6 +18,6 @@ export const audioPaths = {
     "throw_card": ["reveal card 1.mp3", "reveal card 2.mp3"], // Sound when throwing a card
 
     // Card selection sounds
-    "select": ["press.m4a"], // Sound when selecting a card
+    "select": ["press.mp3"], // Sound when selecting a card
     "deselect": ["coin.mp3"] // Sound when deselecting a card
 };

@@ -103,14 +103,8 @@ function Game({ manager }) {
   }, [gameState.isEnded]);
 
   useEffect(() => {
-    if (gameState.possibleActions.length === 1 && gameState.possibleActions[0].name === "confirm_round_finished" && !gameState.isEnded) {
-      // This is because the bot has to confirm the round finished too
-      manager.runBotAction();
-      manager.runBotAction();
-
-      playAudio('end', { waitMs: 500 });
-      const modalOverlay = document.getElementById('roundOverModalOverlay');
-      modalOverlay.classList.add('show');
+    if (gameState.roundJustStarted && !gameState.isEnded) {
+      playAudio('sfx', { waitMs: 500 });
     }
   }, [gameState]);
 
