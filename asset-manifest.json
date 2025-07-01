@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/escoba-de-15/static/css/main.aa3d3514.css",
+    "main.js": "/escoba-de-15/static/js/main.9f72620e.js",
+    "static/media/background.png": "/escoba-de-15/static/media/background.464a8c21cfbd2b187d89.png",
+    "index.html": "/escoba-de-15/index.html",
+    "main.aa3d3514.css.map": "/escoba-de-15/static/css/main.aa3d3514.css.map",
+    "main.9f72620e.js.map": "/escoba-de-15/static/js/main.9f72620e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa3d3514.css",
+    "static/js/main.9f72620e.js"
+  ]
+}
