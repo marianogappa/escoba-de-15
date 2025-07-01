@@ -1,0 +1,232 @@
+/* Modal Overlays */
+#roundOverModalOverlay,
+#gameOverModalOverlay,
+#infoModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#roundOverModalOverlay.show,
+#gameOverModalOverlay.show,
+#infoModal.show {
+  opacity: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Modal Content */
+#roundOverModal,
+#modal,
+#infoText {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Set Results Styling */
+#roundOverContent h3 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.setResults {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.playerResults {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  border: 2px solid #e9ecef;
+}
+
+.playerResults h4 {
+  color: #495057;
+  margin-bottom: 15px;
+  font-size: 18px;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.resultItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+  color: #495057;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem.total {
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 2px solid #28a745;
+  color: #28a745;
+  font-size: 16px;
+}
+
+.currentScores {
+  background: #e8f5e8;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 2px solid #28a745;
+}
+
+.currentScores h4 {
+  color: #155724;
+  margin-bottom: 15px;
+}
+
+.scoreRow {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  color: #155724;
+  font-size: 16px;
+}
+
+/* Game Over Modal */
+#gameOverText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+#winnerImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ffd700;
+}
+
+#gameOverTextLines {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+#gameOverTextLines p {
+  margin: 10px 0;
+  color: #495057;
+  font-size: 16px;
+}
+
+/* Info Modal */
+#infoText {
+  text-align: left;
+  max-width: 700px;
+}
+
+#infoText p {
+  margin: 15px 0;
+  line-height: 1.6;
+  color: #495057;
+}
+
+#infoText a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#infoText a:hover {
+  text-decoration: underline;
+}
+
+#infoText hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #dee2e6;
+}
+
+/* Modal Buttons */
+#roundOverModal button,
+#modal button,
+#infoText button {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+
+#roundOverModal button:hover,
+#modal button:hover,
+#infoText button:hover {
+  background: linear-gradient(135deg, #218838, #1c7430);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#roundOverModal button:active,
+#modal button:active,
+#infoText button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Modal Design */
+@media (max-width: 768px) {
+
+  #roundOverModal,
+  #modal,
+  #infoText {
+    padding: 20px;
+    margin: 20px;
+    max-width: 90vw;
+  }
+
+  .setResults {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .scoreRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #gameOverText {
+    font-size: 24px;
+    gap: 15px;
+  }
+
+  #winnerImg {
+    width: 60px;
+    height: 60px;
+  }
+}

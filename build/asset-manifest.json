@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/truco-argentino/static/css/main.344dd0ff.css",
+    "main.js": "/truco-argentino/static/js/main.d391a095.js",
+    "static/media/background.png": "/truco-argentino/static/media/background.464a8c21cfbd2b187d89.png",
+    "index.html": "/truco-argentino/index.html",
+    "main.344dd0ff.css.map": "/truco-argentino/static/css/main.344dd0ff.css.map",
+    "main.d391a095.js.map": "/truco-argentino/static/js/main.d391a095.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.344dd0ff.css",
+    "static/js/main.d391a095.js"
+  ]
+}
