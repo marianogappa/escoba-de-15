@@ -92,8 +92,8 @@
 
 /* Card and Hand Styling */
 .card {
-  width: 90px;
-  height: 135px;
+  width: 10vh;
+  height: 15vh;
   margin: 5px;
   border-radius: 8px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -162,8 +162,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
-  padding: 20px;
+  margin: 0px 0;
+  padding: 0px;
   border-radius: 15px;
   min-height: 150px;
 }
@@ -173,13 +173,13 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   min-height: 100px;
 }
 
 .tableCard {
-  width: 90px;
-  height: 135px;
+  width: 10vh;
+  height: 15vh;
   transition: all 0.2s ease;
   margin: 5px;
   border-radius: 8px;
@@ -241,131 +241,4 @@
 .escobasCount {
   color: #ffd700;
   font-weight: bold;
-}
-
-/* Action Buttons */
-.actionButtonsRow {
-  margin-top: 20px;
-}
-
-.actionButtons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.actionButtons button {
-  padding: 12px 20px;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.actionButtons button:hover {
-  background: linear-gradient(135deg, #5a5a5a, #3a3a3a);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
-
-.actionButtons button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.twoButtons {
-  min-width: 120px;
-}
-
-.fourButtons {
-  min-width: 100px;
-}
-
-.sixButtons {
-  min-width: 80px;
-}
-
-.nineButtons {
-  min-width: 70px;
-  font-size: 12px;
-  padding: 8px 12px;
-}
-
-/* Speech Bubble */
-.speechBubble {
-  position: relative;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  padding: 15px 20px;
-  margin: 10px 20px;
-  max-width: 300px;
-  min-height: 50px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.speechBubble:after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid rgba(255, 255, 255, 0.95);
-}
-
-.speechBubbleText {
-  color: #333;
-  font-weight: 500;
-  text-align: center;
-  line-height: 1.4;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .gameContainer {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .card {
-    width: 45px;
-    height: 67px;
-    margin: 3px;
-  }
-
-  .tableCard {
-    width: 40px;
-    height: 60px;
-  }
-
-  .playerImg {
-    width: 50px;
-    height: 50px;
-  }
-
-  .actionButtons button {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-
-  .pileInfo {
-    min-width: 100px;
-    padding: 8px;
-  }
-
-  .tableCards {
-    padding: 15px;
-  }
 }

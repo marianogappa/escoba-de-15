@@ -7,6 +7,8 @@ import Hand from './Hand';
 import { playAudio, stopAudio, setMasterSwitchAudioOn } from './audio';
 import { getRoundOverContent } from './roundOver';
 import { isCardSelectable, isCardSelected, findMatchingAction } from './cardSelectionLogic';
+import Diagnostics from './Diagnostics';
+import './styles_diagnostics.css';
 
 function Game({ manager }) {
   const [trigger, setTrigger] = useState(0);
@@ -49,22 +51,36 @@ function Game({ manager }) {
   }
 
 
-  function removeModalAndHandleAction(action) {
+  function removeModalAndHandleAction() {
     const modalOverlay = document.getElementById('roundOverModalOverlay');
     modalOverlay.classList.remove('show');
+    modalOverlay.classList.add('hidden');
     stopAudio();
-    handleAction(action);
+    setTimeout(() => {
+      handleAction({ forceBotAction: true }); // trigger a bot action
+    }, 1000);
   }
 
   function removeModalAndLeaveGame(action) {
     const modalOverlay = document.getElementById('gameOverModalOverlay');
     modalOverlay.classList.remove('show');
+    modalOverlay.classList.add('hidden');
     window.location.href = window.location.href;
   }
 
   const gameState = manager.gameState;
   const isHumanTurn = gameState.turnPlayerID === 0;
   const isBotTurn = gameState.turnPlayerID === 1;
+
+  useEffect(() => {
+    if (gameState.setJustStarted && gameState.scores[0] + gameState.scores[1] > 0) {
+      // Show round over modal when points change
+      playAudio('finish', { waitMs: 500 });
+      const modalOverlay = document.getElementById('roundOverModalOverlay');
+      modalOverlay.classList.remove('hidden');
+      modalOverlay.classList.add('show');
+    }
+  }, [gameState.setJustStarted]);
 
   // Clear selected cards when it's not the human's turn or when game state changes significantly
   useEffect(() => {
@@ -98,6 +114,7 @@ function Game({ manager }) {
         winnerImgElem.src = botSrc;
       }
 
+      modalOverlay.classList.remove('hidden');
       modalOverlay.classList.add('show');
     }
   }, [gameState.isEnded]);
@@ -106,7 +123,47 @@ function Game({ manager }) {
     if (gameState.roundJustStarted && !gameState.isEnded) {
       playAudio('sfx', { waitMs: 500 });
     }
+    if (gameState.turnPlayerID === 0 && gameState.lastCapturerPlayerID === 1) {
+      const lastAction = gameState.actions[gameState.actions.length - 1];
+      const lastActionsCards = [lastAction.card, ...lastAction.capturedTableCards];
+      if (lastActionsCards.length >= 2) {
+        showCardRevealModal(lastActionsCards);
+      }
+    }
   }, [gameState]);
+
+  function showCardRevealModal(cards) {
+    playAudio('reveal_card', { volume: 80 });
+
+    const modalOverlay = document.getElementById('cardRevealModalOverlay');
+    const modal = document.getElementById('cardRevealModal');
+    const cardsContainer = document.getElementById('revealedCardsContainer');
+
+    // Clear previous cards
+    cardsContainer.innerHTML = '';
+
+    // Add cards to modal
+    cards.forEach(card => {
+      const cardImg = document.createElement('img');
+      cardImg.className = 'revealedCard';
+      cardImg.src = `${process.env.PUBLIC_URL}/img/${card.number < 10 ? '0' + card.number : card.number}-${card.suit}s.png`;
+      cardsContainer.appendChild(cardImg);
+    });
+
+    // Show modal
+    modalOverlay.classList.remove('hidden');
+    modalOverlay.classList.add('show');
+
+    // Auto-hide after 1.5 seconds
+    setTimeout(() => {
+      modal.classList.add('fadeOut');
+      setTimeout(() => {
+        modalOverlay.classList.remove('show');
+        modalOverlay.classList.add('hidden');
+        modal.classList.remove('fadeOut');
+      }, 300); // Wait for fade out animation
+    }, 1500);
+  }
 
   // Helper function to render table cards
   function renderTableCards() {
@@ -209,6 +266,9 @@ function Game({ manager }) {
       <div id="roundOverModalOverlay" className="hidden">
         <div id="roundOverModal">
           {getRoundOverContent(gameState)}
+          <button onClick={() => removeModalAndHandleAction()}>
+            Continuar
+          </button>
         </div>
       </div>
       <div id="gameOverModalOverlay" className="hidden">
@@ -217,6 +277,16 @@ function Game({ manager }) {
             <span>🏆</span>
             <img id="winnerImg" className="playerImg" src={winnerImgSrc} />
             <span>🏆</span>
+          </div>
+          <button onClick={() => removeModalAndLeaveGame()}>
+            Jugar de nuevo
+          </button>
+        </div>
+      </div>
+      <div id="cardRevealModalOverlay" className="hidden">
+        <div id="cardRevealModal">
+          <h3>Bot se lleva</h3>
+          <div id="revealedCardsContainer" className="revealedCardsContainer">
           </div>
         </div>
       </div>

@@ -7,63 +7,67 @@ export function getRoundOverContent(gameState) {
   const humanPlayerID = 0;
   const botPlayerID = 1;
 
+  const humanHasCartas = results.cardCounts[humanPlayerID] > results.cardCounts[botPlayerID];
+  const botHasCartas = results.cardCounts[botPlayerID] > results.cardCounts[humanPlayerID];
+  const humanHasOros = results.oroCardCounts[humanPlayerID] > results.oroCardCounts[botPlayerID];
+  const botHasOros = results.oroCardCounts[botPlayerID] > results.oroCardCounts[humanPlayerID];
+  const humanHasSieteDeOro = results.hasSieteDeOro[humanPlayerID];
+  const botHasSieteDeOro = results.hasSieteDeOro[botPlayerID];
+  const humanHasSetenta = results.setentaScores[humanPlayerID] > results.setentaScores[botPlayerID];
+  const botHasSetenta = results.setentaScores[botPlayerID] > results.setentaScores[humanPlayerID];
+  const humanHasEscobas = results.escobasThisSet[humanPlayerID];
+  const botHasEscobas = results.escobasThisSet[botPlayerID];
+
   return (
     <div id="roundOverContent">
-      <h3>Resultado del set</h3>
+      <h3>Resultado del mazo</h3>
 
       <div className="setResults">
         <div className="playerResults">
           <h4>Vos</h4>
-          <div className="resultItem">
-            <span>Cartas: {results.cardCounts[humanPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>Oros: {results.oroCardCounts[humanPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>7 de oro: {results.hasSieteDeOro[humanPlayerID] ? 'Sí' : 'No'}</span>
-          </div>
-          <div className="resultItem">
-            <span>La setenta: {results.setentaScores[humanPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>Escobas: {results.escobasThisSet[humanPlayerID] || 0}</span>
-          </div>
+          {humanHasCartas && <div className="resultItem">
+            <span>Cartas ({results.cardCounts[humanPlayerID] || 0})</span>
+          </div>}
+          {humanHasOros && <div className="resultItem">
+            <span>Oros ({results.oroCardCounts[humanPlayerID] || 0})</span>
+          </div>}
+          {humanHasSieteDeOro && <div className="resultItem">
+            <span>7 de oro</span>
+          </div>}
+          {humanHasSetenta && <div className="resultItem">
+            <span>La setenta</span>
+          </div>}
+          {humanHasEscobas && <div className="resultItem">
+            <span>{results.escobasThisSet[humanPlayerID] || 0} escobas</span>
+          </div>}
           <div className="resultItem total">
-            <strong>Puntos ganados: {results.pointsAwarded[humanPlayerID] || 0}</strong>
+            <strong>{results.pointsAwarded[humanPlayerID] || 0} puntos</strong>
           </div>
         </div>
 
-        <div className="playerResults">
+        <div className="playerResults playerResultsBot">
           <h4>Bot</h4>
-          <div className="resultItem">
-            <span>Cartas: {results.cardCounts[botPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>Oros: {results.oroCardCounts[botPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>7 de oro: {results.hasSieteDeOro[botPlayerID] ? 'Sí' : 'No'}</span>
-          </div>
-          <div className="resultItem">
-            <span>La setenta: {results.setentaScores[botPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem">
-            <span>Escobas: {results.escobasThisSet[botPlayerID] || 0}</span>
-          </div>
-          <div className="resultItem total">
-            <strong>Puntos ganados: {results.pointsAwarded[botPlayerID] || 0}</strong>
+          {botHasCartas && <div className="resultItem resultItemBot">
+            <span>Cartas ({results.cardCounts[botPlayerID] || 0})</span>
+          </div>}
+          {botHasOros && <div className="resultItem resultItemBot">
+            <span>Oros ({results.oroCardCounts[botPlayerID] || 0})</span>
+          </div>}
+          {botHasSieteDeOro && <div className="resultItem resultItemBot">
+            <span>7 de oro</span>
+          </div>}
+          {botHasSetenta && <div className="resultItem resultItemBot">
+            <span>La setenta</span>
+          </div>}
+          {botHasEscobas && <div className="resultItem resultItemBot">
+            <span>{results.escobasThisSet[botPlayerID] || 0} escobas</span>
+          </div>}
+          <div className="resultItem total resultItemBot">
+            <strong>{results.pointsAwarded[botPlayerID] || 0} puntos</strong>
           </div>
         </div>
       </div>
 
-      <div className="currentScores">
-        <h4>Puntajes actuales</h4>
-        <div className="scoreRow">
-          <span>Vos: {gameState.scores[humanPlayerID] || 0} puntos</span>
-          <span>Bot: {gameState.scores[botPlayerID] || 0} puntos</span>
-        </div>
-      </div>
     </div>
   );
 }

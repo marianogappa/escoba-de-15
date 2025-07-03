@@ -1,5 +1,4 @@
 {
-  "homepage": "https://marianogappa.github.io/escoba-de-15",
   "name": "escoba-argentina",
   "version": "0.0.0",
   "main": "/src/index.js",
@@ -17,7 +16,7 @@
     "react-scripts": "^5.0.0"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.3.0"
   },
   "browserslist": {
     "production": [

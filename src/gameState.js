@@ -18,6 +18,9 @@ export class GameStateManager {
             }
             this.gameState = jsRunAction(action);
         } else {
+            if (this.gameState.setJustStarted && !action.forceBotAction) {
+                return null;
+            }
             const changed = this.runBotAction();
             if (!changed) {
                 return null;

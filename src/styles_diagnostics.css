@@ -1,0 +1,17 @@
+.diagnostics-container {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.diagnostics-container h4 {
+    margin-top: 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.diagnostics-content p {
+    margin: 5px 0;
+    font-size: 14px;
+}

@@ -19,5 +19,5 @@ export const audioPaths = {
 
     // Card selection sounds
     "select": ["press.mp3"], // Sound when selecting a card
-    "deselect": ["coin.mp3"] // Sound when deselecting a card
+    "deselect": ["press.mp3"] // Sound when deselecting a card
 };
