@@ -9,6 +9,7 @@ import { getRoundOverContent } from './roundOver';
 import { isCardSelectable, isCardSelected, findMatchingAction } from './cardSelectionLogic';
 // import Diagnostics from './Diagnostics';
 import './styles_diagnostics.css';
+import AssetPreloader from './AssetPreloader';
 
 function Game({ manager }) {
   const [trigger, setTrigger] = useState(0);
@@ -367,6 +368,7 @@ export default function GameLandingPage() {
       </div>
 
       <div id="game"></div>
+      <AssetPreloader />
     </>
   )
 }
