@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/escoba-de-15/static/css/main.f46a357c.css",
-    "main.js": "/escoba-de-15/static/js/main.9f72620e.js",
-    "static/media/background.png": "/escoba-de-15/static/media/background.464a8c21cfbd2b187d89.png",
+    "main.css": "/escoba-de-15/static/css/main.6fffa0a7.css",
+    "main.js": "/escoba-de-15/static/js/main.84ef5d75.js",
     "index.html": "/escoba-de-15/index.html",
-    "main.f46a357c.css.map": "/escoba-de-15/static/css/main.f46a357c.css.map",
-    "main.9f72620e.js.map": "/escoba-de-15/static/js/main.9f72620e.js.map"
+    "main.6fffa0a7.css.map": "/escoba-de-15/static/css/main.6fffa0a7.css.map",
+    "main.84ef5d75.js.map": "/escoba-de-15/static/js/main.84ef5d75.js.map"
   },
   "entrypoints": [
-    "static/css/main.f46a357c.css",
-    "static/js/main.9f72620e.js"
+    "static/css/main.6fffa0a7.css",
+    "static/js/main.84ef5d75.js"
   ]
 }
