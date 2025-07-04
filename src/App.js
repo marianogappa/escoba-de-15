@@ -7,7 +7,7 @@ import Hand from './Hand';
 import { playAudio, stopAudio, setMasterSwitchAudioOn } from './audio';
 import { getRoundOverContent } from './roundOver';
 import { isCardSelectable, isCardSelected, findMatchingAction } from './cardSelectionLogic';
-import Diagnostics from './Diagnostics';
+// import Diagnostics from './Diagnostics';
 import './styles_diagnostics.css';
 
 function Game({ manager }) {
@@ -34,7 +34,6 @@ function Game({ manager }) {
       // Select the card
       const newSelection = [...selectedCards, card];
       setSelectedCards(newSelection);
-      playAudio('select', { volume: 70 }); // Selection sound
 
       // Check if the new selection matches any available action
       const matchingAction = findMatchingAction({ selectedCards: newSelection, playerCards, possibleActions });
@@ -43,9 +42,11 @@ function Game({ manager }) {
         // Auto-execute the action
         setTimeout(() => {
           setSelectedCards([]); // Clear selections
-          playAudio('reveal_card', { volume: 80 }); // Action execution sound
+          // playAudio('reveal_card', { volume: 80 }); // Action execution sound
           handleAction(matchingAction);
         }, 300); // Small delay for better UX
+      } else {
+        playAudio('select', { volume: 70 }); // Selection sound
       }
     }
   }
@@ -75,7 +76,6 @@ function Game({ manager }) {
   useEffect(() => {
     if (gameState.setJustStarted && gameState.scores[0] + gameState.scores[1] > 0) {
       // Show round over modal when points change
-      playAudio('finish', { waitMs: 500 });
       const modalOverlay = document.getElementById('roundOverModalOverlay');
       modalOverlay.classList.remove('hidden');
       modalOverlay.classList.add('show');
@@ -101,13 +101,19 @@ function Game({ manager }) {
     setSelectedCards([]);
   }, [gameState.tableCards?.length]);
 
-  let winnerImgSrc = `${process.env.PUBLIC_URL}/img/human.jpeg`
+  let winnerImgSrc = `${process.env.PUBLIC_URL}/img/human.png`
 
   useEffect(() => {
     const botSrc = `${process.env.PUBLIC_URL}/img/bot.png`;
 
     if (gameState.isEnded) {
-      playAudio('finish', { waitMs: 500 });
+      if (gameState.lastSetResults.pointsAwarded[0] < gameState.lastSetResults.pointsAwarded[1]) {
+        playAudio('lose', { waitMs: 500 });
+      } else if (gameState.lastSetResults.pointsAwarded[0] > gameState.lastSetResults.pointsAwarded[1]) {
+        playAudio('win', { waitMs: 500 });
+      } else {
+        playAudio('draw', { waitMs: 500 });
+      }
       const modalOverlay = document.getElementById('gameOverModalOverlay');
       if (gameState.winnerPlayerID === 1) {
         const winnerImgElem = document.getElementById('winnerImg');
@@ -133,7 +139,7 @@ function Game({ manager }) {
   }, [gameState]);
 
   function showCardRevealModal(cards) {
-    playAudio('reveal_card', { volume: 80 });
+    playAudio('sfx', { volume: 80 });
 
     const modalOverlay = document.getElementById('cardRevealModalOverlay');
     const modal = document.getElementById('cardRevealModal');
@@ -255,7 +261,7 @@ function Game({ manager }) {
               className="humanPlayerSection"
               name="Vos"
               points={gameState.scores ? gameState.scores[0] : 0}
-              imgSrc={`${process.env.PUBLIC_URL}/img/human.jpeg`}
+              imgSrc={`${process.env.PUBLIC_URL}/img/human.png`}
               isTheirTurn={isHumanTurn}
             />
             {renderPileInfo(0)}
@@ -330,7 +336,7 @@ export default function GameLandingPage() {
           <div className="landingContent">
             <h1>ESCOBA DE 15</h1>
             <div className="vsContainer">
-              <img className="startGameHuman" src={`${process.env.PUBLIC_URL}/img/human.jpeg`} />
+              <img className="startGameHuman" src={`${process.env.PUBLIC_URL}/img/human.png`} />
               <span className="startGameVs">VS</span>
               <img className="startGameBot" src={botSrc} />
             </div>

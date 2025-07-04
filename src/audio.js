@@ -8,6 +8,7 @@ export function setMasterSwitchAudioOn(on) {
 }
 
 export function playAudio(audioType, options = {}) {
+    console.log('playAudio', audioType, options);
     if (!masterSwitchOn) {
         return;
     }

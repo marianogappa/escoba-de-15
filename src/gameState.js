@@ -1,4 +1,4 @@
-import { playAudio } from './audio';
+import { playAudio, stopAudio } from './audio';
 
 export class GameStateManager {
     constructor() {
@@ -54,27 +54,20 @@ export class GameStateManager {
     }
 
     playSound() {
-        if (!this.gameState.lastActionLog) {
+        if (!this.gameState.actions || this.gameState.actions.length === 0) {
             return;
         }
+        stopAudio();
 
-        const action = this.gameState.lastActionLog.action;
-        const actionPlayerID = this.gameState.lastActionLog.playerID;
+        const action = this.gameState.actions[this.gameState.actions.length - 1];
 
-        // Human player actions
-        if (actionPlayerID === 0) {
-            playAudio('press');
-            return;
-        }
-
-        // Bot actions
         switch (action.name) {
             case "throw_card":
-                if (action.capturedCards && action.capturedCards.length > 0) {
-                    if (action.isEscoba) {
+                if (action.capturedTableCards && action.capturedTableCards.length > 0) {
+                    if (this.gameState.tableCards.length === 0) {
                         playAudio('escoba'); // Special sound for escoba
                     } else {
-                        playAudio('capture'); // Sound for capturing cards
+                        playAudio('capture_cards'); // Sound for capturing cards
                     }
                 } else {
                     playAudio('throw_card'); // Sound for just throwing a card
