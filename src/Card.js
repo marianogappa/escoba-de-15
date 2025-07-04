@@ -13,7 +13,7 @@ export default function Card({
     );
   }
   if (card.number === null || card.suit === null) {
-    return <div className="card" />;
+    return <div className="card noShadow" />;
   }
   if (card.is_hole) {
     return <div className="card" id={`card-was-${card.number}-${card.suit}`} />;
