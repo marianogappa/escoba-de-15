@@ -334,7 +334,7 @@ export default function GameLandingPage() {
         <div className="landingContainer">
           <div className="sideColumn"></div>
           <div className="landingContent">
-            <h1>ESCOBA DE 15</h1>
+            <h1>ESCOBA<br />DE 15</h1>
             <a id="startGameButton" onClick={() => startGame({})}>
               <div className="vsContainer">
                 <img className="startGameHuman" src={`${process.env.PUBLIC_URL}/img/human.png`} />
