@@ -335,12 +335,13 @@ export default function GameLandingPage() {
           <div className="sideColumn"></div>
           <div className="landingContent">
             <h1>ESCOBA DE 15</h1>
-            <div className="vsContainer">
-              <img className="startGameHuman" src={`${process.env.PUBLIC_URL}/img/human.png`} />
-              <span className="startGameVs">VS</span>
-              <img className="startGameBot" src={botSrc} />
-            </div>
-            <a id="startGameButton" onClick={() => startGame({})}>▶️</a>
+            <a id="startGameButton" onClick={() => startGame({})}>
+              <div className="vsContainer">
+                <img className="startGameHuman" src={`${process.env.PUBLIC_URL}/img/human.png`} />
+                <span className="startGameVs">VS</span>
+                <img className="startGameBot" src={botSrc} />
+              </div>
+            </a>
             <span id="info_link" onClick={showInfoModal}>info</span>
           </div>
           <div className="sideColumn"></div>
@@ -348,23 +349,19 @@ export default function GameLandingPage() {
       </div>
       <div id="infoModal" className="hidden">
         <div id="infoText">
-          <p>Este juego está basado en la tradicional Escoba de 15 argentina,
-            un juego de cartas españolas donde el objetivo es sumar 15 puntos capturando cartas de la mesa.
-            El juego continúa hasta que un jugador alcance los puntos necesarios para ganar.</p>
+          <p>Este juego está creado sin fines de lucro, para disfrutar y difundir el juego tradicional argentino de cartas españolas Escoba de 15.</p>
 
           <p>El motor es open source, con licencia MIT, y acepto issues & PRs. Soporta multijugador (humano vs humano).
             Está construído para ser fácilmente extensible: se pueden crear distintas UIs, se pueden agregar nuevos bots, etc.
           </p>
           <hr />
-          <p>This game is based on the traditional Argentine Escoba de 15,
-            a Spanish card game where the objective is to score 15 points by capturing cards from the table.
-            The game continues until a player reaches the required points to win.</p>
+          <p>This game was created without profit in mind, to enjoy and spread the traditional argentine spanish-card game Escoba de 15.</p>
 
           <p>The engine is open source, MIT licensed, and I accept issues & PRs. It supports multiplayer (human vs human).
             It's built to be easily extensible: different UIs can be created, new bots can be added, etc.
           </p>
 
-          <p><a href="https://github.com/marianogappa/escoba-argentina" target="_blank">Game engine & UI</a></p>
+          <p><a href="https://github.com/marianogappa/escoba" target="_blank">Game engine & UI</a></p>
           {/* <ActionButton action={continueAction} handleAction={hideInfoModal} /> */}
         </div>
       </div>

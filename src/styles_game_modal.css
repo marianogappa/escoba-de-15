@@ -156,9 +156,10 @@
 }
 
 #infoText p {
-  margin: 15px 0;
+  margin: 5px 0;
   line-height: 1.6;
   color: #495057;
+  text-align: justify;
 }
 
 #infoText a {
@@ -171,7 +172,7 @@
 }
 
 #infoText hr {
-  margin: 20px 0;
+  margin: 2px 0;
   border: none;
   border-top: 1px solid #dee2e6;
 }
