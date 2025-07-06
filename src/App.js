@@ -177,6 +177,7 @@ function Game({ manager }) {
     const tableCards = gameState.tableCards || [];
     const playerCards = gameState.hands[0].cards || [];
     const possibleActions = gameState.possibleActions.filter(action => action.name === 'throw_card');
+    const isBotTurn = gameState.turnPlayerID === 1;
     return (
       <div className="tableCards">
         <div className="tableCardsContainer">
@@ -186,13 +187,15 @@ function Game({ manager }) {
             const highlighted = isCardSelectable({ card, selectedCards, playerCards, possibleActions });
 
             let className = 'card tableCard';
-            if (selected) {
-              className += ' selected';
-            } else if (selectable) {
-              className += ' selectable';
-            }
-            if (highlighted) {
-              className += ' highlighted';
+            if (!isBotTurn) {
+              if (selected) {
+                className += ' selected';
+              } else if (selectable) {
+                className += ' selectable';
+              }
+              if (highlighted) {
+                className += ' highlighted';
+              }
             }
 
             return (
